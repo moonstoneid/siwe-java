@@ -3,7 +3,7 @@ package org.mn.web3login.siwe.error;
 import lombok.Getter;
 
 /**
- * Signals an error while working with SIWE messages.
+ * Signals an error while working with Siwe messages.
  */
 public class SiweException extends Exception {
 

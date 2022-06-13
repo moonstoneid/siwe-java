@@ -10,7 +10,9 @@ import org.mn.web3login.siwe.error.ErrorTypes;
 import org.mn.web3login.siwe.error.SiweException;
 import org.mn.web3login.siwe.grammar.SiweGrammar;
 import org.mn.web3login.siwe.util.Utils;
+import org.mn.web3login.siwe.validator.SignatureValidator;
 import org.mn.web3login.siwe.util.ValidatorUtils;
+import org.web3j.protocol.Web3j;
 
 /**
  * Creates a new SiweMessage<.br>
@@ -104,6 +106,21 @@ public class SiweMessage {
      * @throws SiweException if the signature is invalid or if fields ar missing
      */
     public void verify(String domain, String nonce, String signature) throws SiweException {
+        verify(domain, nonce, signature, null);
+    }
+
+    /**
+     * Verifies the integrity of the fields of this object by checking several fields and the
+     * validity of the signature.
+     *
+     * @param domain    RFC 4501 dns authority that is requesting the signing
+     * @param nonce     The nonce issued by the backend
+     * @param signature A valid signature for this message
+     * @param provider  A {@link Web3j} provider instance to conduct EIP-1271 signature check
+     *
+     * @throws SiweException if the signature is invalid or if fields ar missing
+     */
+    public void verify(String domain, String nonce, String signature, Web3j provider) throws SiweException {
         // Verify that the given domain matches the domain of this object
         if (domain == null || domain.isEmpty() || !domain.equals(this.domain)) {
             throw new SiweException("Domain does not match.", ErrorTypes.DOMAIN_MISMATCH);
@@ -135,7 +152,7 @@ public class SiweMessage {
         }
 
         // Verify signature
-        if (!ValidatorUtils.isValidSignature(this, signature)) {
+        if (!SignatureValidator.isValidSignature(this, signature, provider)) {
             throw new SiweException("Invalid signature.", ErrorTypes.INVALID_SIGNATURE);
         }
     }

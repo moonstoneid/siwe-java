@@ -5,36 +5,29 @@ import org.mn.web3login.siwe.error.SiweException;
 
 public class Example {
 
-    // A valid EIP-4361 formatted message
-    public static final String MESSAGE = "localhost:8080 wants you to sign in with your Ethereum account:\n" +
-            "0x76384DEC5e05C2487b58470d5F40c3aeD2807AcB\n\n" +
-            "Sign in with Ethereum to the app" + ".\n\n" +
-            "URI: http://localhost:8080\n" +
+    public static final String MESSAGE = "example.com wants you to sign in with your Ethereum account:\n" +
+            "0xAd472fbB6781BbBDfC4Efea378ed428083541748\n\n" +
+            "Sign in to use the app.\n\n" +
+            "URI: https://example.com\n" +
             "Version: 1\n" +
             "Chain ID: 1\n" +
-            "Nonce: dqODS6hrQYe8CkhKj\n" +
-            "Issued At: 2022-02-27T17:19:11.268Z\n" +
-            "Expiration Time: 2024-02-27T17:19:11.268Z\n" +
-            "Not Before: 2021-02-27T17:19:11.268Z\n" +
-            "Request ID: abc\n" +
-            "Resources:\n" +
-            "- ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/\n" +
-            "- https://example.com/my-web2-claim.json";
+            "Nonce: EnZ3CLrm6ap78uiNE0MU\n" +
+            "Issued At: 2022-06-17T22:29:40.065529400+02:00";
 
-    // A valid signature for Example.MESSAGE
-    public static final String SIGNATURE =
-            "0x2d079a5d5d9c0da3d97dd452f6b6eba0181f601eda26dd81df347ec70b2ca2d23a59a03f0071441b6fe35cc6658f36" +
-                    "78b899d8e965efbaadba2149c7c6460c61B";
+    public static final String SIGNATURE = "0x2ce1f57908b3d1cfece352a90cec9beab0452829a0bf741d26016d60676d" +
+            "63807b5080b4cc387edbe741203387ef0b8a6e79743f636512cc48c80cbb12ffa8261b";
 
     public static void main(String[] args) {
+        SiweMessage siweMessage;
         try {
-            // Try to parse the String. Throws an exception if message is not a valid EIP-4361 message.
-            SiweMessage siweMessage = new SiweMessage.Parser().parse(MESSAGE);
+            // Parse string to SiweMessage
+            siweMessage = new SiweMessage.Parser().parse(MESSAGE);
 
-            // Validate signature. Throws an exception if signature is invalid, mandatory fields are missing,
-            // expiration has been reached or now<notBefore
-            siweMessage.verify("localhost:8080","dqODS6hrQYe8CkhKj", SIGNATURE);
+            // Verify integrity of SiweMessage by matching its signature
+            siweMessage.verify("example.com","EnZ3CLrm6ap78uiNE0MU", SIGNATURE);
+
         } catch (SiweException e) {
+            // Handle exception
             e.printStackTrace();
         }
     }
