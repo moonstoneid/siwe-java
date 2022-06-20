@@ -1,4 +1,4 @@
-package org.mn.web3login.siwe.validator;
+package com.moonstone.siwe.validator;
 
 import java.math.BigInteger;
 import java.util.Arrays;

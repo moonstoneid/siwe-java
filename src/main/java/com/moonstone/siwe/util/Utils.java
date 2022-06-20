@@ -1,4 +1,4 @@
-package org.mn.web3login.siwe.util;
+package com.moonstone.siwe.util;
 
 import java.security.SecureRandom;
 

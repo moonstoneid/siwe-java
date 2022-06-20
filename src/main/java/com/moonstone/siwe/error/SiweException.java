@@ -1,4 +1,4 @@
-package org.mn.web3login.siwe.error;
+package com.moonstone.siwe.error;
 
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
-package org.mn.web3login.siwe.validator;
+package com.moonstone.siwe.validator;
 
-import org.mn.web3login.siwe.SiweMessage;
+import com.moonstone.siwe.SiweMessage;
 import org.web3j.crypto.*;
 import org.web3j.protocol.Web3j;
 import org.web3j.tx.gas.ContractGasProvider;

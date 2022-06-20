@@ -1,4 +1,4 @@
-package org.mn.web3login.siwe.error;
+package com.moonstone.siwe.error;
 
 public enum ErrorTypes {
 

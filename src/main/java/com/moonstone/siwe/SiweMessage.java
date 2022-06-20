@@ -1,17 +1,17 @@
-package org.mn.web3login.siwe;
+package com.moonstone.siwe;
 
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 import apg.Ast;
 import apg.Utilities;
+import com.moonstone.siwe.error.ErrorTypes;
+import com.moonstone.siwe.error.SiweException;
+import com.moonstone.siwe.grammar.SiweGrammar;
+import com.moonstone.siwe.util.Utils;
+import com.moonstone.siwe.util.ValidatorUtils;
 import lombok.Getter;
-import org.mn.web3login.siwe.error.ErrorTypes;
-import org.mn.web3login.siwe.error.SiweException;
-import org.mn.web3login.siwe.grammar.SiweGrammar;
-import org.mn.web3login.siwe.util.Utils;
-import org.mn.web3login.siwe.validator.SignatureValidator;
-import org.mn.web3login.siwe.util.ValidatorUtils;
+import com.moonstone.siwe.validator.SignatureValidator;
 import org.web3j.protocol.Web3j;
 
 /**
@@ -380,7 +380,7 @@ public class SiweMessage {
         }
 
         /**
-         * Sets an array of resources
+         * Sets an array of resources.
          *
          * @param resources The resources
          *
