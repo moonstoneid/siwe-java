@@ -39,7 +39,8 @@ public class Example {
 
         // Verify signature
         if(siweMessage != null) {
-            boolean isValid = verifySignature(siweMessage, SIGNATURE);
+            boolean isValid = verifySignature(siweMessage, "example.com", "EnZ3CLrm6ap78uiNE0MU",
+                    SIGNATURE);
         }
 
         // Create new Siwe message from scratch
@@ -82,14 +83,15 @@ public class Example {
      * Verifies the integrity of the fields of this object by checking several fields and the
      * validity of the signature.
      *
-     * @param siweMessage A Siwe message
+     * @param domain The domain that requests the signing
+     * @param nonce The nonce that was issued to prevent replay attacks
      * @param signature A signature that matches the Siwe message
      *
      */
-    private static boolean verifySignature(SiweMessage siweMessage, String signature){
+    private static boolean verifySignature(SiweMessage siweMessage, String domain, String nonce, String signature){
         // Verify integrity of the domain, the nonce and the signature
         try {
-            siweMessage.verify(siweMessage.getDomain(), siweMessage.getNonce(), SIGNATURE);
+            siweMessage.verify(domain, nonce, signature);
             return true;
         } catch (SiweException e) {
             switch (e.getErrorType()) {
