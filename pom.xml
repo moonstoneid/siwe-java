@@ -16,7 +16,7 @@
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 
-        <apg-java.version>3954fb</apg-java.version>
+        <apg-java.version>V1.1.1</apg-java.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <lombok.version>1.18.24</lombok.version>
         <web3j.version>4.9.2</web3j.version>
@@ -24,7 +24,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.ssill2</groupId>
+            <groupId>com.github.moonstoneid</groupId>
             <artifactId>apg-java</artifactId>
             <version>${apg-java.version}</version>
         </dependency>
