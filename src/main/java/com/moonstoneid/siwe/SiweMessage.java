@@ -1,21 +1,21 @@
-package com.moonstone.siwe;
+package com.moonstoneid.siwe;
 
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 import apg.Ast;
 import apg.Utilities;
-import com.moonstone.siwe.error.ErrorTypes;
-import com.moonstone.siwe.error.SiweException;
-import com.moonstone.siwe.grammar.SiweGrammar;
-import com.moonstone.siwe.util.Utils;
-import com.moonstone.siwe.util.ValidatorUtils;
+import com.moonstoneid.siwe.error.ErrorTypes;
+import com.moonstoneid.siwe.error.SiweException;
+import com.moonstoneid.siwe.grammar.SiweGrammar;
+import com.moonstoneid.siwe.util.Utils;
+import com.moonstoneid.siwe.util.ValidatorUtils;
 import lombok.Getter;
-import com.moonstone.siwe.validator.SignatureValidator;
+import com.moonstoneid.siwe.validator.SignatureValidator;
 import org.web3j.protocol.Web3j;
 
 /**
- * Creates a new SiweMessage<.br>
+ * Creates a new SiweMessage<br>
  * <br>
  * A new instance can be created with {@link Builder} or with {@link Parser}.
  */
@@ -436,6 +436,8 @@ public class SiweMessage {
          * @param msg A valid EIP-4361 message
          *
          * @throws SiweException if the parsing fails
+         *
+         * @return SiweMessage The parsed message.
          */
         public SiweMessage parse(String msg) throws SiweException {
             apg.Parser parser = new apg.Parser(SiweGrammar.getInstance());

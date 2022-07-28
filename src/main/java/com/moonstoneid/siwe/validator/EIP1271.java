@@ -1,4 +1,4 @@
-package com.moonstone.siwe.validator;
+package com.moonstoneid.siwe.validator;
 
 import java.math.BigInteger;
 import java.util.Arrays;

@@ -1,7 +1,7 @@
-package com.moonstone.siwe;
+package com.moonstoneid.siwe;
 
-import com.moonstone.siwe.SiweMessage;
-import com.moonstone.siwe.error.SiweException;
+import com.moonstoneid.siwe.SiweMessage;
+import com.moonstoneid.siwe.error.SiweException;
 
 public class Example {
 

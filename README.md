@@ -12,7 +12,7 @@ signature.
 Add the following Maven dependency to your project (requires Java 11 or higher).
 ```xml
 <dependency>
-    <groupId>com.moonstone</groupId>
+    <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -21,7 +21,7 @@ Add the following Maven dependency to your project (requires Java 11 or higher).
 ## Usage
 The following examples briefly show how to use siwe-java.
 
-A full example can be found [here](src/main/java/com/moonstone/siwe/Example.java).
+A full example can be found [here](example/src/main/java/com/moonstoneid/siwe/Example.java).
 
 ### Create new message
 Create a new Siwe message from scratch and get a valid EIP-4361 string representation.
@@ -49,8 +49,8 @@ String message = "example.com wants you to sign in with your Ethereum account:\n
     "Nonce: EnZ3CLrm6ap78uiNE0MU\n" +
     "Issued At: 2022-06-17T22:29:40.065529400+02:00";
 
-String signature = "0x2ce1f57908b3d1cfece352a90cec9beab0452829a0bf741d26016d60676d63807b5080b4cc387edbe741203387ef0b" +
-        "8a6e79743f636512cc48c80cbb12ffa8261b";
+String signature = "0x2ce1f57908b3d1cfece352a90cec9beab0452829a0bf741d26016d60676d63" +
+        "807b5080b4cc387edbe741203387ef0b8a6e79743f636512cc48c80cbb12ffa8261b";
 try {
     // Parse string to SiweMessage
     SiweMessage siwe = new SiweMessage.Parser().parse(message);
@@ -66,7 +66,7 @@ try {
 The EIP-4361 specification can be found [here](https://eips.ethereum.org/EIPS/eip-4361).
 
 ## Contributing
-Please use the issue tracker to report any bugs.
+Please use the [issue tracker](https://github.com/moonstoneid/siwe-java/issues) to report any bugs.
 
 If you would like to contribute code, fork the repository and send a pull request. When submitting code, please make 
 every effort to follow existing conventions and style in order to keep the code as readable as possible.

@@ -2,7 +2,7 @@
 // from an SABNF grammar by Java APG, Verision 1.1.0.
 // Copyright (c) 2021 Lowell D. Thomas, all rights reserved.
 // Licensed under the 2-Clause BSD License.
-package com.moonstone.siwe.grammar;
+package com.moonstoneid.siwe.grammar;
 
 import java.io.PrintStream;
 

@@ -1,4 +1,4 @@
-package com.moonstone.siwe.util;
+package com.moonstoneid.siwe.util;
 
 import org.web3j.crypto.Keys;
 
