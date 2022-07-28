@@ -1,4 +1,4 @@
-package com.moonstone.siwe.error;
+package com.moonstoneid.siwe.error;
 
 import lombok.Getter;
 

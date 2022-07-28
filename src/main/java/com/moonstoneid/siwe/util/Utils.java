@@ -1,4 +1,4 @@
-package com.moonstone.siwe.util;
+package com.moonstoneid.siwe.util;
 
 import java.security.SecureRandom;
 
