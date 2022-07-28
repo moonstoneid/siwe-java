@@ -7,7 +7,7 @@
 
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>siwe-java</name>
@@ -99,10 +99,10 @@
     </build>
 
     <distributionManagement>
-        <snapshotRepository>
+        <repository>
             <id>ossrh_repo</id>
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </snapshotRepository>
+        </repository>
     </distributionManagement>
 
     <profiles>
