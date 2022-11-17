@@ -1,18 +1,17 @@
 package com.moonstoneid.siwe;
 
-import com.moonstoneid.siwe.SiweMessage;
 import com.moonstoneid.siwe.error.SiweException;
 
 public class Example {
 
-    public static final String domain = "example.com";                                  // Domain that requests signing
-    public static final String address = "0xAd472fbB6781BbBDfC4Efea378ed428083541748";  // Signing address
-    public static final String uri = "https://example.com";                             // Subject of the signing
-    public static final String version = "1";                                           // Version of the message
-    public static final int chainId = 1;                                                // EIP-155 Chain ID
-    public static final String nonce = "EnZ3CLrm6ap78uiNE0MU";                          // Randomized token
-    public static final String issuedAt = "2022-06-17T22:29:40.065529400+02:00";        // ISO 8601 datetime string
-    public static final String statement = "Sign in to use the app.";                   // Assertion that the user signs
+    public static final String DOMAIN = "example.com";                                  // Domain that requests signing
+    public static final String ADDRESS = "0xAd472fbB6781BbBDfC4Efea378ed428083541748";  // Signing address
+    public static final String URI = "https://example.com";                             // Subject of the signing
+    public static final String VERSION = "1";                                           // Version of the message
+    public static final int CHAIN_ID = 1;                                               // EIP-155 Chain ID
+    public static final String NONCE = "EnZ3CLrm6ap78uiNE0MU";                          // Randomized token
+    public static final String ISSUED_AT = "2022-06-17T22:29:40.065529400+02:00";       // ISO 8601 datetime string
+    public static final String STATEMENT = "Sign in to use the app.";                   // Assertion that the user signs
 
     // EIP-4361 string
     public static final String MESSAGE = "example.com wants you to sign in with your Ethereum account:\n" +
@@ -74,8 +73,8 @@ public class Example {
      */
     private static SiweMessage createMessage() throws SiweException{
         // Create new Siwe message
-        SiweMessage siweMessage = new SiweMessage.Builder(domain, address, uri, version, chainId, nonce, issuedAt)
-                .statement(statement).build();
+        SiweMessage siweMessage = new SiweMessage.Builder(DOMAIN, ADDRESS, URI, VERSION, CHAIN_ID, NONCE, ISSUED_AT)
+                .statement(STATEMENT).build();
         return siweMessage;
     }
 
