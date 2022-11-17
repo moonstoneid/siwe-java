@@ -46,7 +46,7 @@ public class SignatureValidator {
     }
 
     // Checks if signature was created with an Externally Owned Account (EOA)
-    private static boolean isEOAWalletSignature(SiweMessage msg, String sig) {
+    static boolean isEOAWalletSignature(SiweMessage msg, String sig) {
         // Verify signature
         // Recover addresses from signature
         // Check if list contains value, ignore case-sensitivity
@@ -55,7 +55,7 @@ public class SignatureValidator {
     }
 
     // If the signature is correct, it returns a List<String> of addresses
-    private static List<String> isEOAWalletSignatureInternally(String msg, String sig) {
+    static List<String> isEOAWalletSignatureInternally(String msg, String sig) {
         List<String> matchedAddresses = new ArrayList<>();
         byte[] msgHash = Sign.getEthereumMessageHash(msg.getBytes(StandardCharsets.UTF_8));
         byte[] signatureBytes = Numeric.hexStringToByteArray(sig);
@@ -92,7 +92,7 @@ public class SignatureValidator {
     }
 
     // Conducts an EIP-1271 signature check
-    private static boolean isContractWalletSignature(Web3j provider, SiweMessage message, String signature) {
+    static boolean isContractWalletSignature(Web3j provider, SiweMessage message, String signature) {
         // If provider is missing, EIP-1271 signature validation is skipped
         if(provider == null) {
             return false;
