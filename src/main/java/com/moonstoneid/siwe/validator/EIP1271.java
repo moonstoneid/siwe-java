@@ -20,20 +20,24 @@ public class EIP1271 extends Contract {
     public static final String FUNC_ISVALIDSIGNATURE = "isValidSignature";
 
     @Deprecated
-    protected EIP1271(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+    protected EIP1271(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice,
+                      BigInteger gasLimit) {
         super(BINARY, contractAddress, web3j, credentials, gasPrice, gasLimit);
     }
 
-    protected EIP1271(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+    protected EIP1271(String contractAddress, Web3j web3j, Credentials credentials,
+                      ContractGasProvider contractGasProvider) {
         super(BINARY, contractAddress, web3j, credentials, contractGasProvider);
     }
 
     @Deprecated
-    protected EIP1271(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+    protected EIP1271(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice,
+                      BigInteger gasLimit) {
         super(BINARY, contractAddress, web3j, transactionManager, gasPrice, gasLimit);
     }
 
-    protected EIP1271(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+    protected EIP1271(String contractAddress, Web3j web3j, TransactionManager transactionManager,
+                      ContractGasProvider contractGasProvider) {
         super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
     }
 
@@ -46,20 +50,24 @@ public class EIP1271 extends Contract {
     }
 
     @Deprecated
-    public static EIP1271 load(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+    public static EIP1271 load(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice,
+                               BigInteger gasLimit) {
         return new EIP1271(contractAddress, web3j, credentials, gasPrice, gasLimit);
     }
 
     @Deprecated
-    public static EIP1271 load(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+    public static EIP1271 load(String contractAddress, Web3j web3j, TransactionManager transactionManager,
+                               BigInteger gasPrice, BigInteger gasLimit) {
         return new EIP1271(contractAddress, web3j, transactionManager, gasPrice, gasLimit);
     }
 
-    public static EIP1271 load(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+    public static EIP1271 load(String contractAddress, Web3j web3j, Credentials credentials,
+                               ContractGasProvider contractGasProvider) {
         return new EIP1271(contractAddress, web3j, credentials, contractGasProvider);
     }
 
-    public static EIP1271 load(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+    public static EIP1271 load(String contractAddress, Web3j web3j, TransactionManager transactionManager,
+                               ContractGasProvider contractGasProvider) {
         return new EIP1271(contractAddress, web3j, transactionManager, contractGasProvider);
     }
 
