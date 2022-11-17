@@ -14,7 +14,7 @@ Add the following Maven dependency to your project (requires Java 11 or higher).
 <dependency>
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
