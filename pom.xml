@@ -7,7 +7,7 @@
 
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>siwe-java</name>
@@ -50,11 +50,14 @@
         <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.13</maven-nexus-staging-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
         <apg-java.version>1.1.1</apg-java.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <lombok.version>1.18.24</lombok.version>
         <web3j.version>4.9.2</web3j.version>
+        <junit.version>5.9.1</junit.version>
+        <mockito.version>4.8.1</mockito.version>
     </properties>
 
     <dependencies>
@@ -81,6 +84,28 @@
             <artifactId>core</artifactId>
             <version>${web3j.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -94,6 +119,18 @@
                     <target>${java-version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-engine</artifactId>
+                        <version>5.4.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

@@ -1,4 +1,8 @@
 ![siwe-java Logo](header.png "siwe-java Logo")
+
+[![Build](https://github.com/moonstoneid/siwe-java/actions/workflows/build.yml/badge.svg)](https://github.com/moonstoneid/siwe-java/actions/workflows/build.yml)
+[![Unit Tests](https://github.com/moonstoneid/siwe-java/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/moonstoneid/siwe-java/actions/workflows/unit-tests.yml)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.moonstoneid/siwe-java/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.moonstoneid/siwe-java?style=flat)
 # Siwe-java
 
 Siwe-java is a Java lib that implements Sign-In with Ethereum ([EIP-4361](https://eips.ethereum.org/EIPS/eip-4361)).
@@ -14,7 +18,7 @@ Add the following Maven dependency to your project (requires Java 11 or higher).
 <dependency>
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

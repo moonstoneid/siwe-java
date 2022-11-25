@@ -1,8 +1,5 @@
 package com.moonstoneid.siwe;
 
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-
 import apg.Ast;
 import apg.Utilities;
 import com.moonstoneid.siwe.error.ErrorTypes;
@@ -10,9 +7,12 @@ import com.moonstoneid.siwe.error.SiweException;
 import com.moonstoneid.siwe.grammar.SiweGrammar;
 import com.moonstoneid.siwe.util.Utils;
 import com.moonstoneid.siwe.util.ValidatorUtils;
-import lombok.Getter;
 import com.moonstoneid.siwe.validator.SignatureValidator;
+import lombok.Getter;
 import org.web3j.protocol.Web3j;
+
+import java.time.OffsetDateTime;
+import java.util.Arrays;
 
 /**
  * Creates a new SiweMessage<br>
@@ -131,7 +131,7 @@ public class SiweMessage {
             throw new SiweException("Nonce does not match.", ErrorTypes.NONCE_MISMATCH);
         }
 
-        long now = OffsetDateTime.now().toEpochSecond();
+         long now = OffsetDateTime.now().toEpochSecond();
 
         // Verify that the message is not yet expired
         if (expirationTime != null) {
@@ -152,7 +152,7 @@ public class SiweMessage {
         }
 
         // Verify signature
-        if (!SignatureValidator.isValidSignature(this, signature, provider)) {
+        if (signature == null || !SignatureValidator.isValidSignature(this, signature, provider)) {
             throw new SiweException("Invalid signature.", ErrorTypes.INVALID_SIGNATURE);
         }
     }
@@ -174,8 +174,8 @@ public class SiweMessage {
             throw new SiweException("Address does not conform to EIP-55.", ErrorTypes.INVALID_ADDRESS);
         }
 
-        // Check statement
-        if (statement == null) {
+        // Check if optional statement is present and if yes, ensure that it does not contain \n
+        if (statement != null && statement.contains("\n")) {
             throw new SiweException("Statement is invalid.", ErrorTypes.INVALID_STATEMENT);
         }
 
@@ -216,7 +216,7 @@ public class SiweMessage {
         // Check if optional field resources is present, not empty and has valid URI format
         if (resources != null && resources.length > 0) {
             for (String uri : resources) {
-                if (!ValidatorUtils.isURI(uri)) {
+                if (uri == null || uri.isEmpty() || !ValidatorUtils.isURI(uri)) {
                     throw new SiweException("Resources contains an invalid URI.",
                             ErrorTypes.INVALID_RESOURCES);
                 }
