@@ -50,9 +50,10 @@ public class ValidatorUtils {
      * @return true if the string is a valid URI, else false
      */
     public static boolean isURI(String uri) {
+        final URI u;
         try {
-            URI u = new URI(uri);
-        } catch (URISyntaxException e) {
+            u = URI.create(uri);
+        } catch (Exception e1) {
             return false;
         }
         return true;
