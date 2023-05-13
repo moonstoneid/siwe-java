@@ -7,7 +7,7 @@
 
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>siwe-java</name>
@@ -45,19 +45,19 @@
         <java-version>11</java-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.13</maven-nexus-staging-plugin.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
 
         <apg-java.version>1.1.1</apg-java.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <lombok.version>1.18.24</lombok.version>
-        <web3j.version>4.9.2</web3j.version>
-        <junit.version>5.9.1</junit.version>
-        <mockito.version>4.8.1</mockito.version>
+        <lombok.version>1.18.26</lombok.version>
+        <web3j.version>4.9.8</web3j.version>
+        <junit.version>5.9.3</junit.version>
+        <mockito.version>5.2.0</mockito.version>
     </properties>
 
     <dependencies>
