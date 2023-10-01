@@ -13,12 +13,12 @@ Siwe-java provides methods to create a Siwe message from scratch, to parse exist
 signature.
 
 ## Installation
-Add the following Maven dependency to your project (requires Java 11 or higher).
+Add the following Maven dependency to your project (requires Java 17 or higher).
 ```xml
 <dependency>
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 
