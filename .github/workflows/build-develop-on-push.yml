@@ -1,9 +1,9 @@
-name: Unit Tests
+name: Build
 
 on:
-  release:
-    types: [created]
-
+  push:
+    branches:
+      - 'develop'
 jobs:
   build:
 
@@ -21,5 +21,5 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Run tests
-        run: mvn test --batch-mode
+      - name: Build
+        run: mvn clean package

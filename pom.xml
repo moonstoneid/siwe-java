@@ -7,7 +7,7 @@
 
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>siwe-java</name>
@@ -42,7 +42,7 @@
     </licenses>
 
     <properties>
-        <java-version>11</java-version>
+        <java-version>17</java-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
@@ -53,10 +53,11 @@
         <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
 
         <apg-java.version>1.1.1</apg-java.version>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
-        <lombok.version>1.18.26</lombok.version>
-        <web3j.version>4.9.8</web3j.version>
-        <junit.version>5.9.3</junit.version>
+        <commons-lang3.version>3.13.0</commons-lang3.version>
+        <lombok.version>1.18.30</lombok.version>
+        <web3j.version>4.10.3</web3j.version>
+        <slf4j.version>2.0.9</slf4j.version>
+        <junit.version>5.10.0</junit.version>
         <mockito.version>5.2.0</mockito.version>
     </properties>
 
@@ -83,6 +84,18 @@
             <groupId>org.web3j</groupId>
             <artifactId>core</artifactId>
             <version>${web3j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <dependency>
