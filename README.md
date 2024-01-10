@@ -1,7 +1,7 @@
 ![siwe-java Logo](header.png "siwe-java Logo")
 
-[![Build](https://github.com/moonstoneid/siwe-java/actions/workflows/build.yml/badge.svg)](https://github.com/moonstoneid/siwe-java/actions/workflows/build.yml)
-[![Unit Tests](https://github.com/moonstoneid/siwe-java/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/moonstoneid/siwe-java/actions/workflows/unit-tests.yml)
+[![Build](https://github.com/moonstoneid/siwe-java/actions/workflows/build-badge.yml/badge.svg)](https://github.com/moonstoneid/siwe-java/actions/workflows/build-badge.yml)
+[![Unit Tests](https://github.com/moonstoneid/siwe-java/actions/workflows/unit-tests-badge.yml/badge.svg)](https://github.com/moonstoneid/siwe-java/actions/workflows/unit-tests-badge.yml)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.moonstoneid/siwe-java/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.moonstoneid/siwe-java?style=flat)
 # Siwe-java
 

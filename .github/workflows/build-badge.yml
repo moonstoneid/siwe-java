@@ -1,4 +1,4 @@
-name: Unit Tests
+name: Build Badge
 
 on:
   release:
@@ -8,6 +8,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       packages: write
@@ -15,11 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Run tests
-        run: mvn test --batch-mode
+      - name: Build
+        run: mvn clean package -DskipTests
