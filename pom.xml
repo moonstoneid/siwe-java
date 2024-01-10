@@ -55,10 +55,12 @@
         <apg-java.version>1.1.1</apg-java.version>
         <commons-lang3.version>3.13.0</commons-lang3.version>
         <lombok.version>1.18.30</lombok.version>
-        <web3j.version>4.10.3</web3j.version>
         <slf4j.version>2.0.9</slf4j.version>
-        <junit.version>5.10.0</junit.version>
-        <mockito.version>5.2.0</mockito.version>
+        <web3j.version>4.10.3</web3j.version>
+
+        <junit-jupiter.version>5.10.1</junit-jupiter.version>
+        <mockito-junit-jupiter.version>5.8.0</mockito-junit-jupiter.version>
+        <mockito-inline.version>5.2.0</mockito-inline.version>
     </properties>
 
     <dependencies>
@@ -81,12 +83,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.web3j</groupId>
-            <artifactId>core</artifactId>
-            <version>${web3j.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
@@ -99,26 +95,31 @@
         </dependency>
 
         <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>core</artifactId>
+            <version>${web3j.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.version}</version>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito.version}</version>
+            <version>${mockito-junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-inline</artifactId>
-            <version>${mockito.version}</version>
+            <version>${mockito-inline.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
