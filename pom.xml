@@ -53,9 +53,9 @@
         <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
 
         <apg-java.version>1.1.1</apg-java.version>
-        <commons-lang3.version>3.13.0</commons-lang3.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
         <lombok.version>1.18.30</lombok.version>
-        <slf4j.version>2.0.9</slf4j.version>
+        <slf4j.version>2.0.12</slf4j.version>
         <web3j.version>4.10.3</web3j.version>
 
         <junit-jupiter.version>5.10.1</junit-jupiter.version>
