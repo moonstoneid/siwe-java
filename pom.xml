@@ -7,7 +7,7 @@
 
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
 
     <name>siwe-java</name>
