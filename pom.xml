@@ -7,7 +7,7 @@
 
     <groupId>com.moonstoneid</groupId>
     <artifactId>siwe-java</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>siwe-java</name>
@@ -56,7 +56,7 @@
         <commons-lang3.version>3.14.0</commons-lang3.version>
         <lombok.version>1.18.30</lombok.version>
         <slf4j.version>2.0.12</slf4j.version>
-        <web3j.version>4.10.3</web3j.version>
+        <web3j.version>4.11.3</web3j.version>
 
         <junit-jupiter.version>5.10.1</junit-jupiter.version>
         <mockito-junit-jupiter.version>5.8.0</mockito-junit-jupiter.version>
