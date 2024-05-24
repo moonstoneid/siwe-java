@@ -45,21 +45,21 @@
         <java-version>17</java-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.13</maven-nexus-staging-plugin.version>
-        <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
 
         <apg-java.version>1.1.1</apg-java.version>
         <commons-lang3.version>3.14.0</commons-lang3.version>
-        <lombok.version>1.18.30</lombok.version>
-        <slf4j.version>2.0.12</slf4j.version>
-        <web3j.version>4.11.3</web3j.version>
+        <lombok.version>1.18.32</lombok.version>
+        <slf4j.version>2.0.13</slf4j.version>
+        <web3j.version>4.12.0</web3j.version>
 
-        <junit-jupiter.version>5.10.1</junit-jupiter.version>
-        <mockito-junit-jupiter.version>5.8.0</mockito-junit-jupiter.version>
+        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+        <mockito-junit-jupiter.version>5.12.0</mockito-junit-jupiter.version>
         <mockito-inline.version>5.2.0</mockito-inline.version>
     </properties>
 
