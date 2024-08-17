@@ -116,7 +116,7 @@ public class SiweMessage {
      * @param domain    RFC 4501 dns authority that is requesting the signing
      * @param nonce     The nonce issued by the backend
      * @param signature A valid signature for this message
-     * @param provider  A {@link Web3j} provider instance to conduct EIP-1271 signature check
+     * @param provider  A {@link Web3j} provider instance to conduct EIP-6492 signature check
      *
      * @throws SiweException if the signature is invalid or if fields ar missing
      */
