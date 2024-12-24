@@ -47,20 +47,19 @@
 
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
-        <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
-        <maven-nexus-staging-plugin.version>1.6.13</maven-nexus-staging-plugin.version>
+        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
+        <maven-nexus-staging-plugin.version>1.6.14</maven-nexus-staging-plugin.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
 
         <apg-java.version>1.1.1</apg-java.version>
-        <commons-lang3.version>3.14.0</commons-lang3.version>
-        <lombok.version>1.18.32</lombok.version>
-        <slf4j.version>2.0.13</slf4j.version>
-        <web3j.version>4.12.0</web3j.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
+        <lombok.version>1.18.36</lombok.version>
+        <slf4j.version>2.0.16</slf4j.version>
+        <web3j.version>4.12.3</web3j.version>
 
-        <junit-jupiter.version>5.10.2</junit-jupiter.version>
-        <mockito-junit-jupiter.version>5.12.0</mockito-junit-jupiter.version>
-        <mockito-inline.version>5.2.0</mockito-inline.version>
+        <junit-jupiter.version>5.11.4</junit-jupiter.version>
+        <mockito-junit-jupiter.version>5.14.2</mockito-junit-jupiter.version>
     </properties>
 
     <dependencies>
@@ -111,13 +110,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
             <version>${mockito-junit-jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-inline</artifactId>
-            <version>${mockito-inline.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
