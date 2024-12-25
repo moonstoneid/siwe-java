@@ -1,8 +1,17 @@
 package com.moonstoneid.siwe.validator;
 
 import com.moonstoneid.siwe.SiweMessage;
+import org.web3j.abi.DefaultFunctionEncoder;
+import org.web3j.abi.TypeEncoder;
+import org.web3j.abi.datatypes.Address;
+import org.web3j.abi.datatypes.Bytes;
+import org.web3j.abi.datatypes.DynamicBytes;
+import org.web3j.abi.datatypes.generated.Bytes32;
 import org.web3j.crypto.*;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.methods.request.Transaction;
+import org.web3j.protocol.core.methods.response.EthCall;
 import org.web3j.tx.gas.ContractGasProvider;
 import org.web3j.utils.Numeric;
 
@@ -14,8 +23,6 @@ import java.util.List;
 
 public class SignatureValidator {
 
-    // EIP-1271 magic value
-    private static final String EIP1271_MAGIC_VALUE = "0x1626ba7e";
     private static final BigInteger GAS_LIMIT = BigInteger.valueOf(6721975L);
     private static final BigInteger GAS_PRICE = BigInteger.valueOf(20000000000L);
     private static Credentials credentials = null;
@@ -35,10 +42,9 @@ public class SignatureValidator {
     /**
      * Validates the signature for the given message.
      *
-     * @param msg       The {@link SiweMessage}
-     * @param sig       The signature for the given message
-     * @param provider  Optional {@link Web3j} instance to check signature of smart contract wallets (EIP-1271)
-     *
+     * @param msg      The {@link SiweMessage}
+     * @param sig      The signature for the given message
+     * @param provider Optional {@link Web3j} instance to check signature of smart contract wallets (EIP-6492)
      * @return true if the signature is correct, else false
      */
     public static boolean isValidSignature(SiweMessage msg, String sig, Web3j provider) {
@@ -61,7 +67,7 @@ public class SignatureValidator {
         byte[] signatureBytes = Numeric.hexStringToByteArray(sig);
 
         // A valid signature must have a length of 65 bytes
-        if(signatureBytes.length != 65){
+        if (signatureBytes.length != 65) {
             return matchedAddresses;
         }
 
@@ -79,7 +85,7 @@ public class SignatureValidator {
             try {
                 publicKey = Sign.recoverFromSignature((byte) i, new ECDSASignature(
                         new BigInteger(1, sd.getR()), new BigInteger(1, sd.getS())), msgHash);
-            } catch (Exception e){
+            } catch (Exception e) {
                 return matchedAddresses;
             }
 
@@ -91,25 +97,31 @@ public class SignatureValidator {
         return matchedAddresses;
     }
 
-    // Conducts an EIP-1271 signature check
+    // Conducts an EIP-6492 signature check
     private static boolean isContractWalletSignature(Web3j provider, SiweMessage message, String signature) {
-        // If provider is missing, EIP-1271 signature validation is skipped
-        if(provider == null) {
+        // If provider is missing, EIP-6492 signature validation is skipped
+        if (provider == null) {
             return false;
         }
         try {
-            String contractAddress = message.getAddress();
-            EIP1271 contract = EIP1271.load(contractAddress, provider, credentials, contractGasProvider);
-            byte[] msgHash = Sign.getEthereumMessageHash(message.toMessage().getBytes(StandardCharsets.UTF_8));
-            byte[] sig = Numeric.hexStringToByteArray(signature);
+            String signerAddress = message.getAddress();
+            String data = "%s%s".formatted(
+                    EIP6492UniversalValidator.CODE,
+                    DefaultFunctionEncoder.encodeConstructor(List.of(
+                            new Address(signerAddress),
+                            new Bytes32(Sign.getEthereumMessageHash(message.toMessage().getBytes(StandardCharsets.UTF_8))),
+                            new DynamicBytes(Numeric.hexStringToByteArray(signature))
+                    ))
+            );
+            EthCall result = provider
+                    .ethCall(new Transaction(null, null, null, null, null, null, data), DefaultBlockParameterName.LATEST)
+                    .send();
 
-            byte[] response = contract.isValidSignature(msgHash, sig).sendAsync().get();
-            if(response == null) {
+            if (result.hasError()) {
                 return false;
             }
-            String responseAsHex = Numeric.toHexString(response);
-            // Check if response matches EIP-1271 magic value
-            return responseAsHex.equalsIgnoreCase(EIP1271_MAGIC_VALUE);
+
+            return "0x01".equals(result.getValue());
         } catch (Exception e) {
             return false;
         }

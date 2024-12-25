@@ -4,24 +4,24 @@ import com.moonstoneid.siwe.SiweMessage;
 import com.moonstoneid.siwe.error.SiweException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.RemoteFunctionCall;
-import org.web3j.protocol.http.HttpService;
-import org.web3j.utils.Numeric;
+import org.web3j.protocol.core.Request;
+import org.web3j.protocol.core.Response;
+import org.web3j.protocol.core.methods.response.EthCall;
+
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class SignatureValidatorTests {
-
-    private static final String EIP1271_MAGIC_VALUE = "0x1626ba7e";
-    private static final String EIP1271_INCORRECT_MAGIC_VALUE = "0x11111111";
+    private static final String EIP6492_CONTRACT_SUCCESS = "0x01";
+    private static final String EIP6492_CONTRACT_FAILURE = "0x00";
 
     // EOA wallet messages & signature
     private static final String M1_MESSAGE = "example.com wants you to sign in with your Ethereum account:" +
@@ -42,9 +42,6 @@ public class SignatureValidatorTests {
             "Version: 1\nChain ID: 5\nNonce: IiFpdzBTnZOthb2xGENG\nIssued At: 2022-11-17T18:26:27.127849Z";
     private static final String M2_SIGNATURE = "0x";
     private static final String M2_SIGNATURE_INVALID = "0x123";
-
-    @Mock
-    protected EIP1271 eip1271;
 
     // --- Tests for validating SignatureValidator ---
 
@@ -69,31 +66,43 @@ public class SignatureValidatorTests {
     }
 
     @Test
-    void testisValidSignatureContractWallet() throws SiweException {
+    void testisValidSignatureContractWallet() throws SiweException, IOException {
         SiweMessage siweMsg = new SiweMessage.Parser().parse(M2_MESSAGE);
-        Web3j dummyWeb3j = Web3j.build(new HttpService(""));
-        Mockito.when(eip1271.isValidSignature(any(),any())).thenReturn(
-                new RemoteFunctionCall<>(null, () -> Numeric.hexStringToByteArray(EIP1271_MAGIC_VALUE)));
 
-        try (MockedStatic<EIP1271> mock = Mockito.mockStatic(EIP1271.class, Mockito.CALLS_REAL_METHODS)) {
-            mock.when(() -> EIP1271.load(any(), any(), (Credentials) any(), any())).thenReturn(eip1271);
-            assertTrue(SignatureValidator.isValidSignature(siweMsg, M2_SIGNATURE, dummyWeb3j),
-                    "Signature validation failed");
-        }
+        EthCall ethCall = new EthCall();
+        ethCall.setResult(EIP6492_CONTRACT_SUCCESS);
+        Web3j web3j = web3jWithEthCallResult(ethCall);
+
+        assertTrue(SignatureValidator.isValidSignature(siweMsg, M2_SIGNATURE, web3j),
+                "Signature validation failed");
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private Web3j web3jWithEthCallResult(EthCall ethCall) throws IOException {
+        Request<?, EthCall> request = mock(Request.class);
+        when(request.send()).thenReturn(ethCall);
+        Web3j web3j = mock(Web3j.class);
+        when(web3j.ethCall(any(), any())).thenReturn((Request) request);
+        return web3j;
     }
 
     @Test
-    void testisValidSignatureContractWalletNegative() throws SiweException {
+    void testisValidSignatureContractWalletNegative() throws SiweException, IOException {
         SiweMessage siweMsg = new SiweMessage.Parser().parse(M2_MESSAGE);
-        Web3j dummyWeb3j = Web3j.build(new HttpService(""));
-        Mockito.when(eip1271.isValidSignature(any(),any())).thenReturn(
-                new RemoteFunctionCall<>(null, () -> Numeric.hexStringToByteArray(EIP1271_INCORRECT_MAGIC_VALUE)));
-
-        try (MockedStatic<EIP1271> mock = Mockito.mockStatic(EIP1271.class, Mockito.CALLS_REAL_METHODS)) {
-            mock.when(() -> EIP1271.load(any(), any(), (Credentials) any(), any())).thenReturn(eip1271);
-            assertFalse(SignatureValidator.isValidSignature(siweMsg, M2_SIGNATURE_INVALID, dummyWeb3j),
-                    "Signature validation failed");
-        }
+        EthCall ethCall = new EthCall();
+        ethCall.setResult(EIP6492_CONTRACT_FAILURE);
+        Web3j web3j = web3jWithEthCallResult(ethCall);
+        assertFalse(SignatureValidator.isValidSignature(siweMsg, M2_SIGNATURE_INVALID, web3j),
+                "Signature validation failed");
     }
 
+    @Test
+    void testisValidSignatureContractWalletError() throws SiweException, IOException {
+        SiweMessage siweMsg = new SiweMessage.Parser().parse(M2_MESSAGE);
+        EthCall ethCall = new EthCall();
+        ethCall.setError(new Response.Error(1234, "test error"));
+        Web3j web3j = web3jWithEthCallResult(ethCall);
+        assertFalse(SignatureValidator.isValidSignature(siweMsg, M2_SIGNATURE_INVALID, web3j),
+                "Signature validation failed");
+    }
 }
