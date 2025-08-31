@@ -61,6 +61,13 @@ class SiweMessageTests {
             "\nRequest ID: 260cbfd5-4d74-42fc\nResources:\n- https://example.com/my-web2-claim.json" +
             "\n- ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/";
 
+    private static final String MESSAGE_AS_STRING_WITH_OPTIONAL_SCHEME = "https://example.com wants you to sign in with your Ethereum account:" +
+            "\n0x9D7e5B049f5dc02D2A3a744972978e77586520Df\n\nSign in to use the app.\n\nURI: https://example.com" +
+            "\nVersion: 1\nChain ID: 1\nNonce: AnX5ELrm2ap11uiNE0MR\nIssued At: 2022-11-11T23:49:55.928Z" +
+            "\nExpiration Time: 2322-01-11T23:49:55.128Z\nNot Before: 2015-07-30T12:12:12.928Z" +
+            "\nRequest ID: 260cbfd5-4d74-42fc\nResources:\n- https://example.com/my-web2-claim.json" +
+            "\n- ipfs://bafybeiemxf5abjwjbikoz4mc3a3dla6ual3jsgpdr4cjr3oz3evfyavhwq/";
+
     // --- Tests for validating a new SiweMessage using the builder ---
 
     @Nested
@@ -94,8 +101,8 @@ class SiweMessageTests {
                     valUtil.when(() -> ValidatorUtils.isEIP55Address(ADDRESS)).thenReturn(true);
 
                     new SiweMessage.Builder(DOMAIN, ADDRESS, URI, VERSION, CHAIN_ID, NONCE, ISSUED_AT)
-                        .statement(STATEMENT).expirationTime(EXPIRATION_TIME).notBefore(NOT_BEFORE)
-                        .requestId(REQUEST_ID).resources(RESOURCES).build();
+                            .statement(STATEMENT).expirationTime(EXPIRATION_TIME).notBefore(NOT_BEFORE)
+                            .requestId(REQUEST_ID).resources(RESOURCES).build();
 
                     valUtil.verify(() -> ValidatorUtils.isEIP55Address(ADDRESS), times(1));
                 }
@@ -393,6 +400,12 @@ class SiweMessageTests {
             SiweException ex = assertThrows(SiweException.class, () -> new SiweMessage.Parser().parse("xyz"),
                     "Parsing failed!");
             assertEquals(ex.getErrorType(), ErrorTypes.UNABLE_TO_PARSE, "Incorrect exception error type!");
+        }
+
+        @Test
+        void testOptionalScheme() {
+            assertDoesNotThrow(() -> new SiweMessage.Parser().parse(MESSAGE_AS_STRING_WITH_OPTIONAL_SCHEME),
+                    "Parsing optional scheme failed!"); // Tests fix for issue #3
         }
 
         @Test
