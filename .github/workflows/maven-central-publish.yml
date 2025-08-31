@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           settings-path: ${{ github.workspace }}
-          server-id: ossrh_repo
+          server-id: central
           server-username: OSSRH_USERNAME
           server-password: OSSRH_TOKEN
 
@@ -36,6 +36,9 @@ jobs:
 
       - name: Test
         run: mvn test --batch-mode
+
+      - name: Debug
+        run: cat pom.xml
 
       - name: Publish
         run: mvn deploy -Prelease --no-transfer-progress --batch-mode -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} -s $GITHUB_WORKSPACE/settings.xml
