@@ -37,6 +37,9 @@ jobs:
       - name: Test
         run: mvn test --batch-mode
 
+      - name: Debug
+        run: cat pom.xml
+
       - name: Publish
         run: mvn deploy -Prelease --no-transfer-progress --batch-mode -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
         env:
