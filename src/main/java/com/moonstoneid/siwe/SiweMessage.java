@@ -256,11 +256,10 @@ public class SiweMessage {
 
         sb.append(domain).append(" wants you to sign in with your Ethereum account:").append("\n");
 
-        sb.append(address).append("\n\n");
+        sb.append(address).append("\n");
 
-        sb.append(statement);
-        if (statement != null) {
-            sb.append("\n");
+        if (statement != null && !statement.isBlank()) {
+            sb.append("\n").append(statement).append("\n");
         }
 
         sb.append("\n").append("URI: ").append(uri);
